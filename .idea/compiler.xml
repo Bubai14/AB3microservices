@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="quoteservice" />
+        <module name="claimservice" />
+        <module name="policyservice" />
+        <module name="notificationservice" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="claimservice" target="11" />
+      <module name="notificationservice" target="11" />
+      <module name="policyservice" target="11" />
+      <module name="quoteservice" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="claimservice" options="-parameters" />
+      <module name="notificationservice" options="-parameters" />
+      <module name="policyservice" options="-parameters" />
+      <module name="quoteservice" options="-parameters" />
+    </option>
+  </component>
+</project>

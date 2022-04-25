@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AB3-microservice-app.iml" filepath="$PROJECT_DIR$/AB3-microservice-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/claimservice/claimservice.iml" filepath="$PROJECT_DIR$/claimservice/claimservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notificationservice/notificationservice.iml" filepath="$PROJECT_DIR$/notificationservice/notificationservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/policyservice/policyservice.iml" filepath="$PROJECT_DIR$/policyservice/policyservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quoteservice/quoteservice.iml" filepath="$PROJECT_DIR$/quoteservice/quoteservice.iml" />
+    </modules>
+  </component>
+</project>

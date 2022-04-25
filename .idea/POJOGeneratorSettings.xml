@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="POJOGeneratorSettings">
+    <option name="entityFolderPath" value="$PROJECT_DIR$/quoteservice/src/main/java/com/ab3/app/quoteservice/entities" />
+  </component>
+</project>

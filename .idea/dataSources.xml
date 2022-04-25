@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="ab3-policy-db-connection" uuid="8f8fb427-dcde-417a-b692-a17558da19ab">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://ab3-mysql-cluster.cluster-cfvtvokvhvu2.ap-south-1.rds.amazonaws.com:3306/quote</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <driver-properties>
+        <property name="enabledTLSProtocols" value="TLSv1.2" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>
