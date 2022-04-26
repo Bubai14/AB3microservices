@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - echo installing dependencies
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - $(aws ecr get-login --no-include-email --region ap-south-1)
   build:
     commands:
       - echo "build microservices"
