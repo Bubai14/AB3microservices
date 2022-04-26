@@ -5,11 +5,11 @@ phases:
     runtime-versions:
       java: corretto11
   pre_build:
-    command:
+    commands:
       - echo installing dependencies
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
-    command:
+    commands:
       - echo "build microservices"
       - cd claimservice
       - mvn package
@@ -28,7 +28,7 @@ phases:
       - cd ..
       - echo "build completed"
   post_build:
-    command:
+    commands:
       - echo "Pushing the docker image"
       - docker push $CLAIM_ECR_URL:$IMAGE_TAG
       - docker push $POLICY_ECR_URL:$IMAGE_TAG
