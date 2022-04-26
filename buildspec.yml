@@ -1,0 +1,41 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+      java: corretto17
+  pre-build:
+    command:
+      - echo installing dependencies
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    command:
+      - echo "build microservices"
+      - cd claimservice
+      - mvn package
+      - docker build -t $CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker tag $CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG $CLAIM_ECR_URL/$CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG
+      - cd ..
+      - cd policyservice
+      - mvn package
+      - docker build -t $POLICY_IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker tag $POLICY_IMAGE_REPO_NAME:$IMAGE_TAG $POLICY_ECR_URL/$POLICY_IMAGE_REPO_NAME:$IMAGE_TAG
+      - cd ..
+      - cd quoteservice
+      - mvn package
+      - docker build -t $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker tag $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG $QUOTE_ECR_URL/$QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG
+      - cd ..
+      - echo "build completed"
+  post-build:
+    command:
+      - echo "Pushing the docker image"
+      - docker push $CLAIM_ECR_URL/$CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push $POLICY_ECR_URL/$POLICY_IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push $QUOTE_ECR_URL/$QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG
+      - printf '[{"name": "claims", "imageUri": "%s"}]' $CLAIMS_CONTAINER_NAME $CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG $CLAIM_ECR_URL/$CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name": "policy", "imageUri": "%s"}]' $POLICY_CONTAINER_NAME $POLICY_IMAGE_REPO_NAME:$IMAGE_TAG $POLICY_ECR_URL/$POLICY_IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name": "claims", "imageUri": "%s"}]' $QUOTE_CONTAINER_NAME $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG $QUOTE_ECR_URL/$QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
+  artifacts:
+    files: imagedefinitions.json
