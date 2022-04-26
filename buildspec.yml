@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - echo installing dependencies
-      - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 673593240843.dkr.ecr.ap-south-1.amazonaws.com)
+      - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
   build:
     commands:
       - echo "build microservices"
