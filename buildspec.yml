@@ -34,8 +34,8 @@ phases:
       - docker push $CLAIM_ECR_URL:$IMAGE_TAG
       - docker push $POLICY_ECR_URL:$IMAGE_TAG
       - docker push $QUOTE_ECR_URL:$IMAGE_TAG
-      - printf '[{"name": "claims", "imageUri": "%s"}]' $CLAIMS_CONTAINER_NAME $CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG $CLAIM_ECR_URL:$IMAGE_TAG > imagedefinitions.json
-      - printf '[{"name": "policy", "imageUri": "%s"}]' $POLICY_CONTAINER_NAME $POLICY_IMAGE_REPO_NAME:$IMAGE_TAG $POLICY_ECR_URL:$IMAGE_TAG > imagedefinitions.json
-      - printf '[{"name": "claims", "imageUri": "%s"}]' $QUOTE_CONTAINER_NAME $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG $QUOTE_ECR_URL:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"claims","imageUri":"%s"}]' $CLAIMS_CONTAINER_NAME $CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG $CLAIM_ECR_URL:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"policy","imageUri":"%s"}]' $POLICY_CONTAINER_NAME $POLICY_IMAGE_REPO_NAME:$IMAGE_TAG $POLICY_ECR_URL:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"claims","imageUri":"%s"}]' $QUOTE_CONTAINER_NAME $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG $QUOTE_ECR_URL:$IMAGE_TAG > imagedefinitions.json
   artifacts:
     files: imagedefinitions.json
