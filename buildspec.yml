@@ -5,7 +5,7 @@ phases:
     runtime-versions:
       docker: 18
       java: corretto17
-  pre-build:
+  pre_build:
     command:
       - echo installing dependencies
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
@@ -28,7 +28,7 @@ phases:
       - docker tag $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG $QUOTE_ECR_URL:$IMAGE_TAG
       - cd ..
       - echo "build completed"
-  post-build:
+  post_build:
     command:
       - echo "Pushing the docker image"
       - docker push $CLAIM_ECR_URL:$IMAGE_TAG
