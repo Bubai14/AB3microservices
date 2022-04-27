@@ -30,4 +30,9 @@ public class ClaimController {
     public ResponseEntity<Boolean> saveClaim(@RequestBody Claim claim) {
         return ResponseEntity.ok(this.claimService.saveClaim(claim));
     }
+
+    @PutMapping(value = "/approval/{claimId}/{approval}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> claimApproval(@PathVariable("claimId") Integer claimId, @PathVariable("approval") String approval) {
+        return ResponseEntity.ok(this.claimService.claimApproval(claimId, approval));
+    }
 }

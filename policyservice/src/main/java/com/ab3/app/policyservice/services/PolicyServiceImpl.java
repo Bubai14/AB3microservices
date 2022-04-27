@@ -4,6 +4,7 @@ import com.ab3.app.policyservice.dto.Policy;
 import com.ab3.app.policyservice.entities.PolicyDetails;
 import com.ab3.app.policyservice.entities.PolicyType;
 import com.ab3.app.policyservice.entities.VehicleDetails;
+import com.ab3.app.policyservice.messaging.MessageSender;
 import com.ab3.app.policyservice.repositories.PolicyRepository;
 import com.ab3.app.policyservice.repositories.PolicyTypeRepository;
 import com.ab3.app.policyservice.repositories.VehicleRepository;
@@ -20,14 +21,17 @@ public class PolicyServiceImpl implements PolicyService {
     private PolicyTypeRepository policyTypeRepository;
     private VehicleRepository vehicleRepository;
     private PolicyRepository policyRepository;
+    private MessageSender messageSender;
 
     @Autowired
     public PolicyServiceImpl(PolicyTypeRepository policyTypeRepository,
                              VehicleRepository vehicleRepository,
-                             PolicyRepository policyRepository) {
+                             PolicyRepository policyRepository,
+                             MessageSender messageSender) {
         this.policyRepository = policyRepository;
         this.vehicleRepository = vehicleRepository;
         this.policyTypeRepository = policyTypeRepository;
+        this.messageSender = messageSender;
     }
 
     @Override
@@ -47,6 +51,11 @@ public class PolicyServiceImpl implements PolicyService {
             // Log the message and throw the error
             return Boolean.FALSE;
         }
+        // Send the notification message
+        StringBuilder messageBuilder = new StringBuilder();
+        messageBuilder.append("Dear Customer, Thank you for purchasing the policy. Your policy number is ")
+                .append(policyDetails.getPolicyNo());
+        this.messageSender.send(messageBuilder.toString());
         return Boolean.TRUE;
     }
 
