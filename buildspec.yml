@@ -39,10 +39,10 @@ phases:
       - docker push $POLICY_ECR_URL:$IMAGE_TAG
       - docker push $QUOTE_ECR_URL:$IMAGE_TAG
       - docker push $NOTIFY_ECR_URL:$IMAGE_TAG
-      - printf '[{"name":"claims-api","imageUri":"%s"},' $CLAIM_ECR_URL:$IMAGE_TAG > claimsimagedefinitions.json
-      - printf '{"name":"policy-api","imageUri":"%s"},' $POLICY_ECR_URL:$IMAGE_TAG > policyimagedefinitions.json
-      - printf '{"name":"quote-api","imageUri":"%s"},' $QUOTE_ECR_URL:$IMAGE_TAG > quoteimagedefinitions.json
-      - printf '{"name":"notify-api","imageUri":"%s"}]' $NOTIFY_ECR_URL:$IMAGE_TAG > notifyimagedefinitions.json
+      - printf '[{"name":"claims-api","imageUri":"%s"}]' $CLAIM_ECR_URL:$IMAGE_TAG > claimsimagedefinitions.json
+      - printf '[{"name":"policy-api","imageUri":"%s"}]' $POLICY_ECR_URL:$IMAGE_TAG > policyimagedefinitions.json
+      - printf '[{"name":"quote-api","imageUri":"%s"}]' $QUOTE_ECR_URL:$IMAGE_TAG > quoteimagedefinitions.json
+      - printf '[{"name":"notify-api","imageUri":"%s"}]' $NOTIFY_ECR_URL:$IMAGE_TAG > notifyimagedefinitions.json
       - cat claimsimagedefinitions.json
       - cat policyimagedefinitions.json
       - cat quoteimagedefinitions.json
