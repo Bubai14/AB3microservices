@@ -10,8 +10,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-@Component
-@Profile(value = "local")
+//@Component
+//@Profile(value = "local")
 public class SSHConnection {
 
     private String PRIVATE_KEY = "/Users/bubaibal/Documents/secrets/EMR-kp.pem";
