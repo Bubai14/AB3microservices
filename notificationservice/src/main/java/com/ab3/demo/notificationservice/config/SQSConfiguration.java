@@ -1,6 +1,6 @@
-package com.ab3.demo.claimservice.config;
+package com.ab3.demo.notificationservice.config;
 
-import com.ab3.demo.claimservice.dto.AwsSecrets;
+import com.ab3.demo.notificationservice.dto.AwsSecrets;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.sqs.AmazonSQSAsync;

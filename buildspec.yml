@@ -26,6 +26,11 @@ phases:
       - docker build -t $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG $QUOTE_ECR_URL:$IMAGE_TAG
       - cd ..
+      - cd notificationservice
+      - mvn package
+      - docker build -t $NOTIFY_IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $NOTIFY_IMAGE_REPO_NAME:$IMAGE_TAG $NOTIFY_ECR_URL:$IMAGE_TAG
+      - cd ..
       - echo "build completed"
   post_build:
     commands:
@@ -33,8 +38,11 @@ phases:
       - docker push $CLAIM_ECR_URL:$IMAGE_TAG
       - docker push $POLICY_ECR_URL:$IMAGE_TAG
       - docker push $QUOTE_ECR_URL:$IMAGE_TAG
+      - docker push $NOTIFY_ECR_URL:$IMAGE_TAG
       - printf '[{"name":"claims-api","imageUri":"%s"}]' $CLAIMS_CONTAINER_NAME $CLAIM_IMAGE_REPO_NAME:$IMAGE_TAG $CLAIM_ECR_URL:$IMAGE_TAG > imagedefinitions.json
       - printf '[{"name":"policy-api","imageUri":"%s"}]' $POLICY_CONTAINER_NAME $POLICY_IMAGE_REPO_NAME:$IMAGE_TAG $POLICY_ECR_URL:$IMAGE_TAG > imagedefinitions.json
       - printf '[{"name":"quote-api","imageUri":"%s"}]' $QUOTE_CONTAINER_NAME $QUOTE_IMAGE_REPO_NAME:$IMAGE_TAG $QUOTE_ECR_URL:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"notify-api","imageUri":"%s"}]' $NOTIFY_CONTAINER_NAME $NOTIFY_IMAGE_REPO_NAME:$IMAGE_TAG $NOTIFY_ECR_URL:$IMAGE_TAG > imagedefinitions.json
+      - cat imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
