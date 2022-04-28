@@ -39,7 +39,17 @@ phases:
       - docker push $POLICY_ECR_URL:$IMAGE_TAG
       - docker push $QUOTE_ECR_URL:$IMAGE_TAG
       - docker push $NOTIFY_ECR_URL:$IMAGE_TAG
-      - printf '[{"name":"claims-api","imageUri":"%s"},{"name":"policy-api","imageUri":"%s"},{"name":"quote-api","imageUri":"%s"},{"name":"notify-api","imageUri":"%s"}]' $CLAIM_ECR_URL:$IMAGE_TAG $POLICY_ECR_URL:$IMAGE_TAG $QUOTE_ECR_URL:$IMAGE_TAG $NOTIFY_ECR_URL:$IMAGE_TAG> imagedefinitions.json
-      - cat imagedefinitions.json
+      - printf '[{"name":"claims-api","imageUri":"%s"},' $CLAIM_ECR_URL:$IMAGE_TAG > claimsimagedefinitions.json
+      - printf '{"name":"policy-api","imageUri":"%s"},' $POLICY_ECR_URL:$IMAGE_TAG > policyimagedefinitions.json
+      - printf '{"name":"quote-api","imageUri":"%s"},' $QUOTE_ECR_URL:$IMAGE_TAG > quoteimagedefinitions.json
+      - printf '{"name":"notify-api","imageUri":"%s"}]' $NOTIFY_ECR_URL:$IMAGE_TAG > notifyimagedefinitions.json
+      - cat claimsimagedefinitions.json
+      - cat policyimagedefinitions.json
+      - cat quoteimagedefinitions.json
+      - cat notifyimagedefinitions.json
 artifacts:
-    files: imagedefinitions.json
+    files:
+      - claimsimagedefinitions.json
+      - policyimagedefinitions.json
+      - quoteimagedefinitions.json
+      - notifyimagedefinitions.json
