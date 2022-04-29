@@ -22,7 +22,7 @@ public class PolicyController {
         this.policyService = policyService;
     }
 
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Policy>> getAllPolicies() {
         return ResponseEntity.ok(this.policyService.getAllPolicies());
     }
@@ -32,7 +32,7 @@ public class PolicyController {
         return ResponseEntity.ok(this.policyService.getPolicy(policyId));
     }
 
-    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> savePolicy(@RequestBody Policy policy){
         return ResponseEntity.ok(this.policyService.savePolicy(policy));
     }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -95,7 +96,8 @@ public class PolicyServiceImpl implements PolicyService {
                 policy.getRegNo(),
                 policy.getChassisNo(),
                 policy.getCc());
-        return new PolicyDetails(policy.getPolicyNo(),
+        vehicleDetails.setVehicleId(generatePrimaryKey());
+        PolicyDetails policyDetails = new PolicyDetails(policy.getPolicyNo(),
                 policyType,
                 policy.getPolicyIssueDate(),
                 policy.getInsuredName(),
@@ -105,5 +107,12 @@ public class PolicyServiceImpl implements PolicyService {
                 "Y",
                 policy.getInsuredEmail(),
                 policy.getInsuredPhone());
+        policyDetails.setPolicyId(generatePrimaryKey());
+        return policyDetails;
+    }
+
+    private Integer generatePrimaryKey() {
+        Random random = new Random();
+        return random.nextInt(1000) + 1;
     }
 }
