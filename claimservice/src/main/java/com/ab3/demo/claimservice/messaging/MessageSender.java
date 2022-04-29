@@ -16,9 +16,15 @@ public class MessageSender {
     private QueueMessagingTemplate queueMessagingTemplate;
 
     public boolean send(String message) {
-        Message payload = MessageBuilder.withPayload(message)
-                .build();
-        queueMessagingTemplate.send(endpoint, payload);
+        System.out.println("Sending message:"+ message);
+        try{
+            Message payload = MessageBuilder.withPayload(message)
+                    .build();
+            queueMessagingTemplate.send(endpoint, payload);
+        } catch(Exception e){
+            System.err.println("Exception sending message:"+e);
+        }
+        System.out.println("Message sent");
         return true;
     }
 }

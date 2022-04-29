@@ -22,7 +22,7 @@ public class MessageReceiver {
 
     @SqsListener(value = "ab3-claims-queue", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
     public void receiveClaimMessages(String message) {
-        log.debug("Message Received from ab3-claims-queue:"+ message);
+        System.out.println("Message Received from ab3-claims-queue:"+ message);
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(mailFrom);
         mailMessage.setTo(mailTo);
@@ -33,7 +33,7 @@ public class MessageReceiver {
 
     @SqsListener(value = "ab3-policy-queue", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
     public void receivePolicyMessages(String message) {
-        log.debug("Message Received from ab3-policy-queue:"+ message);
+        System.out.println("Message Received from ab3-policy-queue:"+ message);
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(mailFrom);
         mailMessage.setTo(mailTo);

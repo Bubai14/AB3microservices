@@ -15,5 +15,6 @@ public class MailService {
 
     public void sendMail(SimpleMailMessage simpleMailMessage){
         simpleEmailServiceJavaMailSender.send(simpleMailMessage);
+        System.out.println("Mail sent");
     }
 }
