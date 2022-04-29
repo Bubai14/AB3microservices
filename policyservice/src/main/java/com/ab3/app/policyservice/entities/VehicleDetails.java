@@ -37,4 +37,8 @@ public class VehicleDetails {
     @NonNull
     @Column(name = "cc")
     private Integer cc;
+
+    public VehicleDetails() {
+
+    }
 }
