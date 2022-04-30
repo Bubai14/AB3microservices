@@ -21,9 +21,14 @@ public class ClaimController {
         this.claimService = claimService;
     }
 
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE )
+    @GetMapping(value = "/unapproved", produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<List<Claim>> getUnapprovedClaims() {
         return ResponseEntity.ok(this.claimService.getUnapprovedClaims());
+    }
+
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<List<Claim>> getAllClaims() {
+        return ResponseEntity.ok(this.claimService.getAllClaims());
     }
 
     @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)

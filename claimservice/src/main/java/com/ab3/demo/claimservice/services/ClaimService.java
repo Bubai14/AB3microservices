@@ -12,6 +12,8 @@ public interface ClaimService {
 
     public List<Claim> getUnapprovedClaims();
 
+    public List<Claim> getAllClaims();
+
     public boolean saveClaim(Claim claim);
 
     public boolean claimApproval(Integer claimId, String approval);

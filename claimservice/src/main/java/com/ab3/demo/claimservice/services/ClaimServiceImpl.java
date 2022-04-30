@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ClaimServiceImpl implements ClaimService{
@@ -32,6 +33,13 @@ public class ClaimServiceImpl implements ClaimService{
         return this.claimRepository.findClaimDetailsByStatus("O").stream().
                 map(claimDetails -> convertClaimDetailsEntityToDto(claimDetails)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<Claim> getAllClaims() {
+        return StreamSupport.
+                stream(this.claimRepository.findAll().spliterator(), false).
+                map(claimDetails -> convertClaimDetailsEntityToDto(claimDetails)).collect(Collectors.toList());
+     }
 
     @Override
     public boolean saveClaim(Claim claim) {
